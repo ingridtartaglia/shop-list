@@ -1,9 +1,12 @@
 angular.module('shopListApp')
 
-.controller('mainCtrl', function($scope) {})
-
-.controller('newListCtrl', function($scope, Lists) {
+.controller('newListCtrl', function($scope, Lists, $ionicPopup) {
     $scope.lists = Lists;
+
+    $scope.newItem = {
+        name: "",
+        checked: true
+    };
 
     $scope.list = {
         name: "",
@@ -60,7 +63,7 @@ angular.module('shopListApp')
         { name: "Mamão", checked: false },
         { name: "Manga", checked: false },
         { name: "Maracujá", checked: false },
-        { name: "Melancia", checked: false }
+        { name: "Melancia", checked: false },
         { name: "Melão", checked: false },
         { name: "Morango", checked: false },
         { name: "Pêra", checked: false },
@@ -80,7 +83,7 @@ angular.module('shopListApp')
         { name: "Ervas finas", checked: false },
         { name: "Ervilha", checked: false },
         { name: "Farinha", checked: false },
-        { name: "Feijão", checked: false }
+        { name: "Feijão", checked: false },
         { name: "Mel", checked: false },
         { name: "Ovo", checked: false },
         { name: "Pimenta", checked: false },
@@ -91,15 +94,54 @@ angular.module('shopListApp')
 
     $scope.addItemClicked = false;
 
+    ///
+
     $scope.addItem = function(){
         $scope.addItemClicked = true;
     };
 
-    $scope.cleanAll = function(){};
+    $scope.saveItem = function(){
+        $scope.others.push(angular.copy($scope.newItem));
+        $scope.newItem = {
+            name: "",
+            checked: true
+        };
+    };
 
-    $scope.saveList = function(list){
-        $scope.contacts.$add(list);
-        $scope.contact = {};
+    $scope.cleanAll = function(){
+        $scope.vegetables.forEach(function(vegetable){
+            vegetable.checked = false;
+        });
+        $scope.fruits.forEach(function(fruit){
+            fruit.checked = false;
+        });
+        $scope.others.forEach(function(other){
+            other.checked = false;
+        });
+    };
+
+    $scope.saveList = function(){
+        var vegetablesChecked = _.where($scope.vegetables, { checked: true });
+        var fruitsChecked = _.where($scope.fruits, { checked: true });
+        var othersChecked = _.where($scope.others, { checked: true });
+
+        $scope.list.items = _.union(vegetablesChecked, fruitsChecked, othersChecked);
+
+        $scope.lists.$add($scope.list);
+
+        $ionicPopup.alert({
+            title: 'List saved!',
+        });
+
+        $scope.vegetables.forEach(function(vegetable){
+            vegetable.checked = false;
+        });
+        $scope.fruits.forEach(function(fruit){
+            fruit.checked = false;
+        });
+        $scope.others.forEach(function(other){
+            other.checked = false;
+        });
     };
 
 })
@@ -108,30 +150,11 @@ angular.module('shopListApp')
     $scope.lists = Lists;
     $scope.listCanSwipe = true;
 
-    $scope.lists = [
-        {
-            name: "Teste 1",
-            date: "",
-        },
-    ];
+    $scope.delete = function(){
 
-    $scope.editList = function(){};
-
-    $scope.delete = function(){};
+    };
 })
 
 .controller('viewListCtrl', function($scope, Lists) {
     $scope.lists = Lists;
-})
-
-.controller('editListCtrl', function($scope, Lists) {
-    $scope.lists = Lists;
-
-    $scope.addItem = function(){
-        $scope.addItemClicked = true;
-    };
-
-    $scope.cleanAll = function(){};
-
-    $scope.saveList = function(){};
-})
+});

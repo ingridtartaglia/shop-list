@@ -23,16 +23,6 @@ angular.module('shopListApp', ['ionic', 'firebase'])
         templateUrl: 'templates/tabs.html'
     })
 
-    .state('tab.main', {
-        url: '/main',
-        views: {
-            'tab-main': {
-                templateUrl: 'templates/tab-main.html',
-                controller: 'mainCtrl'
-            }
-        }
-    })
-
     .state('tab.new-list', {
         url: '/new-list',
         views: {
@@ -61,19 +51,9 @@ angular.module('shopListApp', ['ionic', 'firebase'])
                 controller: 'viewListCtrl'
             }
         }
-    })
-
-    .state('tab.edit-list', {
-        url: '/edit-list',
-        views: {
-            'tab-edit-list': {
-                templateUrl: 'templates/tab-edit-list.html',
-                controller: 'editListCtrl'
-            }
-        }
     });
 
 
-    $urlRouterProvider.otherwise('/tab/main');
+    $urlRouterProvider.otherwise('/tab/new-list');
 
 });

@@ -1,0 +1,14 @@
+<ion-view view-title="Saved Lists" can-swipe="listCanSwipe">
+    <ion-content>
+
+        <ion-list>
+            <ion-item ng-repeat="list in lists">
+                {{list.name}}
+                <ion-option-button class="button-calm" ng-click="editList()">Edit</ion-option-button>
+                <ion-option-button class="button-assertive" ng-click="delete()">Delete</ion-delete-button>
+            </ion-item>
+        </ion-list>
+
+
+    </ion-content>
+</ion-view>

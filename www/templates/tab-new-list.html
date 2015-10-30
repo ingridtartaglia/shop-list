@@ -1,0 +1,39 @@
+<ion-view view-title="New List">
+    <ion-content class="padding">
+
+        <div class="list">
+
+            <div class="item item-divider">Vegetables</div>
+            <ion-checkbox ng-repeat="vegetable in vegetables" ng-model="isChecked">{{vegetable}}</ion-checkbox>
+
+            <span class="padding"></span>
+
+            <div class="item item-divider">Fruits</div>
+            <ion-checkbox ng-repeat="fruit in fruits" ng-model="isChecked">{{fruit}}</ion-checkbox>
+
+            <span class="padding"></span>
+
+            <div class="item item-divider">Others</div>
+            <ion-checkbox ng-repeat="other in others" ng-model="isChecked">{{other}}</ion-checkbox>
+
+            <span class="padding" style="display:block"></span>
+
+            <div class="text-center">
+                <button class="button button-stable">Add more items</button>
+                <button class="button button-assertive">Clean All</button>
+                <button class="button button-balanced">Save List</button>
+            </div>
+
+            <span class="padding" style="display:block"></span>
+
+            <div class="list">
+                <div class="item item-input-inset">
+                    <label class="item-input-wrapper">
+                        <input type="text" placeholder="Item name">
+                    </label>
+                    <button class="button button-calm">Add</button>
+                </div>
+            </div>
+
+        </ion-content>
+    </ion-view>

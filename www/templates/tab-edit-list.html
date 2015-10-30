@@ -3,6 +3,15 @@
 
         <div class="list">
 
+            <div class="list" ng-form="nameForm">
+                <label class="item item-input">
+                    <input type="text" placeholder="List Name" ng-model="list.name" name="name" required>
+                </label>
+                <div ng-messages="nameForm.name.$error" ng-show="nameForm.name.$touched && nameForm.name.$invalid">
+                    <div ng-message="required" class="assertive">This is required.</div>
+                </div>
+            </div>
+
             <div class="item item-divider">Vegetables</div>
             <ion-checkbox ng-repeat="vegetable in vegetables" ng-model="isChecked">{{vegetable}}</ion-checkbox>
 
@@ -17,16 +26,17 @@
             <ion-checkbox ng-repeat="other in others" ng-model="isChecked">{{other}}</ion-checkbox>
 
             <span class="padding" style="display:block"></span>
+            <span class="padding" style="display:block"></span>
 
             <div class="text-center">
-                <button class="button button-stable">Add more items</button>
+                <button class="button button-stable" ng-click="addItem()">Add more items</button>
                 <button class="button button-assertive">Clean All</button>
-                <button class="button button-balanced">Save List</button>
+                <button class="button button-balanced" ng-disabled="nameForm.$invalid">Save List</button>
             </div>
 
             <span class="padding" style="display:block"></span>
 
-            <div class="list">
+            <div class="list" ng-show="addItemClicked">
                 <div class="item item-input-inset">
                     <label class="item-input-wrapper">
                         <input type="text" placeholder="Item name">
@@ -34,6 +44,6 @@
                     <button class="button button-calm">Add</button>
                 </div>
             </div>
-
+        </div>
         </ion-content>
     </ion-view>

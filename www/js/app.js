@@ -1,6 +1,6 @@
 // Ionic Starter App
 
-angular.module('shopListApp', ['ionic'])
+angular.module('shopListApp', ['ionic', 'firebase'])
 
 .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {

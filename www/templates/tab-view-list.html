@@ -1,4 +1,11 @@
 <ion-view view-title="List">
+
+    <ion-nav-buttons side="primary">
+      <button class="button button-clear" ui-sref="tab-saved">
+          <i class="ion-arrow-left-c"></i>
+      </button>
+    </ion-nav-buttons>
+
     <ion-content class="padding">
 
         <div class="list">
@@ -15,6 +22,6 @@
 
             <div class="item item-divider">Others</div>
             <ion-checkbox ng-repeat="other in others" ng-model="isChecked">{{other}}</ion-checkbox>
-
+        </div>
         </ion-content>
     </ion-view>

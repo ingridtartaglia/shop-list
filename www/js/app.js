@@ -44,9 +44,9 @@ angular.module('shopListApp', ['ionic', 'firebase'])
     })
 
     .state('tab.view-list', {
-        url: '/view-list',
+        url: '/view-list/:id',
         views: {
-            'tab-view-list': {
+            'tab-saved': {
                 templateUrl: 'templates/tab-view-list.html',
                 controller: 'viewListCtrl'
             }

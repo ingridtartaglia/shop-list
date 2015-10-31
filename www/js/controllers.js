@@ -150,11 +150,11 @@ angular.module('shopListApp')
     $scope.lists = Lists;
     $scope.listCanSwipe = true;
 
-    $scope.delete = function(){
-
+    $scope.delete = function(list){
+        $scope.lists.$remove(list);
     };
 })
 
-.controller('viewListCtrl', function($scope, Lists) {
-    $scope.lists = Lists;
+.controller('viewListCtrl', function($scope, Lists, $stateParams) {
+    $scope.list = _.find(Lists, { $id: $stateParams.id });
 });
